@@ -1,16 +1,16 @@
 <html lang="en">
 <head>
-<meta name="viewport" content="width=device-width, initial-scale=1">
-<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
-<link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400&family=Montserrat:wght@600&display=swap" rel="stylesheet">
-<style>
-body {
+ <meta name="viewport" content="width=device-width, initial-scale=1">
+ <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+ <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400&family=Montserrat:wght@600&display=swap" rel="stylesheet">
+ <style>
+ body {
  font-family: "Roboto", sans-serif;
  margin:0;
  background-color: #070510;
  height:100vh; /* Задаем высоту для body */
-}
-.sidenav {
+ }
+ .sidenav {
  height:100%;
  width:250px;
  position: fixed;
@@ -19,30 +19,40 @@ body {
  left:0;
  background-color: #141030;
  overflow-x: hidden;
- padding-top:40px;
+ padding-top:45px; /* Отступ сверху для изображения */
  display: flex;
  flex-direction: column;
- justify-content: flex-start;
-}
-.sidenav a {
+ align-items: stretch; /* Изменено на stretch для выравнивания по ширине */
+ }
+ .sidenav img.center-image {
+ width:150px; /* Установите желаемую ширину для центрального изображения */
+ height: auto; /* Автоматическая высота для сохранения пропорций */
+ margin-bottom:20px; /* Отступ снизу для разделения с кнопками */
+ align-self: center; /* Центрируем изображение по горизонтали */
+ }
+ .sidenav a {
  padding:16px;
  text-decoration: none;
  font-size:25px;
  color: white;
- display: block;
- margin:10px0;
+ display: flex; /* Используем flex для выравнивания */
+ align-items: center; /* Центрируем по вертикали */
+ margin:10px0; /* Исправлено: добавлен пробел между значениями */
  border-radius:12px;
- transition: background-color0.3s, color0.3s;
+ transition: background-color0.3s, color0.3s; /* Исправлено: добавлены пробелы */
  font-family: "Montserrat", sans-serif;
-}
-.sidenav a:hover {
+ width:100%; /* Занимает всю ширину сайдбара */
+ }
+ .sidenav a:hover {
  background-color: #575757;
  color: #f1f1f1;
-}
-.sidenav a i {
- margin-right:10px;
-}
-.main {
+ }
+ .sidenav a img {
+ width:23px; /* Фиксированная ширина для изображений */
+ height:23px; /* Фиксированная высота для изображений */
+ margin-right:10px; /* Отступ между изображением и текстом */
+ }
+ .main {
  margin-left:250px;
  font-size:28px;
  padding:10px;
@@ -51,38 +61,42 @@ body {
  justify-content: center; /* Центрирование по горизонтали */
  align-items: center; /* Центрирование по вертикали */
  height:100vh; /* Задаем высоту для main */
-}
-#demo {
+ }
+ #demo {
  font-size:48px; /* Увеличение размера шрифта таймера */
-}
-@media screen and (max-width:768px) {
+ }
+ @media screen and (max-width:768px) {
  .sidenav {
  width:250px;
  }
  .main {
  margin-left:0;
  }
-}
-@media screen and (max-height:450px) {
+ }
+ @media screen and (max-height:450px) {
  .sidenav {
  padding-top:15px;
  }
  .sidenav a {
  font-size:18px;
  }
-}
-</style>
+ }
+ </style>
 </head>
 <body>
 
 <div class="sidenav">
- <a href="index.html"><i class="fas fa-user"></i>Home</a>
- <a href="#services"><i class="fas fa-cogs"></i>Artifacts</a>
- <a href="#clients"><i class="fas fa-users"></i>Equipment</a>
- <a href="#contact"><i class="fas fa-envelope"></i>Leaks</a>
- <a href="#contact"><i class="fas fa-envelope"></i>Leaks</a>
- <a href="#contact"><i class="fas fa-envelope"></i>Leaks</a>
- <a href="#contact"><i class="fas fa-envelope"></i>Leaks</a>
+ <img src="emoji_cookie1002_002.png" class="center-image" alt="Centered Cookie Image"> <!-- Центральное изображение -->
+ <a href="index.html">
+ <img src="Common_Icon_Home.png">Home</a>
+ <a href="cookies.html">
+ <img src="Common_Icon_Cookie.png">Cookies</a>
+ <a href="#services">
+ <img src="Common_Icon_Artifact.png">Artifacts</a>
+ <a href="#services">
+ <img src="Common_Icon_Weapon.png">Equipments</a>
+ <a href="#services">
+ <img src="Common_Icon_Skin.png">Skins</a>
 </div>
 
 <div class="main">
@@ -90,7 +104,7 @@ body {
 </div>
 
 <script>
-var countDownDate = new Date("Jan22, 2025 07:00:00").getTime();
+var countDownDate = new Date("Jan22,2025 07:00:00").getTime();
 var x = setInterval(function() {
  var now = new Date().getTime();
  var distance = countDownDate - now;
