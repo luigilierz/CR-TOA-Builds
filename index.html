@@ -1,70 +1,110 @@
-<!DOCTYPE html>
-<html>
+<html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>CR:TOA Builds</title>
- <style>
- body {
- display: flex;
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+<link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400&family=Montserrat:wght@600&display=swap" rel="stylesheet">
+<style>
+body {
+ font-family: "Roboto", sans-serif;
  margin:0;
- font-family: Arial, sans-serif;
+ background-color: #070510;
+ height:100vh; /* Задаем высоту для body */
+}
+.sidenav {
+ height:100%;
+ width:250px;
+ position: fixed;
+ z-index:1;
+ top:0;
+ left:0;
+ background-color: #141030;
+ overflow-x: hidden;
+ padding-top:40px;
+ display: flex;
+ flex-direction: column;
+ justify-content: flex-start;
+}
+.sidenav a {
+ padding:16px;
+ text-decoration: none;
+ font-size:25px;
+ color: white;
+ display: block;
+ margin:10px0;
+ border-radius:12px;
+ transition: background-color0.3s, color0.3s;
+ font-family: "Montserrat", sans-serif;
+}
+.sidenav a:hover {
+ background-color: #575757;
+ color: #f1f1f1;
+}
+.sidenav a i {
+ margin-right:10px;
+}
+.main {
+ margin-left:250px;
+ font-size:28px;
+ padding:10px;
+ color: white;
+ display: flex;
+ justify-content: center; /* Центрирование по горизонтали */
+ align-items: center; /* Центрирование по вертикали */
+ height:100vh; /* Задаем высоту для main */
+}
+#demo {
+ font-size:48px; /* Увеличение размера шрифта таймера */
+}
+@media screen and (max-width:768px) {
+ .sidenav {
+ width:250px;
  }
-
- .sidebar {
- width:100px; /* Ширина боковой панели */
- background-color: #f4f4f4; /* Цвет фона боковой панели */
- padding:20px;
- box-shadow:2px05px rgba(0,0,0,0.1);
+ .main {
+ margin-left:0;
  }
-
- .main-content {
- flex:1; /* Основная часть занимает оставшееся пространство */
- padding:20px;
+}
+@media screen and (max-height:450px) {
+ .sidenav {
+ padding-top:15px;
  }
-
- .logo {
- text-align: center;
- margin-bottom:20px;
+ .sidenav a {
+ font-size:18px;
  }
-
- .nav-links {
- list-style-type: none; /* Убираем маркеры списка */
- padding:0;
- }
-
- .nav-links li {
- margin:10px0; /* Отступы между ссылками */
- }
-
- .nav-links a {
- text-decoration: none; /* Убираем подчеркивание */
- color: #333; /* Цвет текста */
- }
-
- .nav-links a:hover {
- color: #007BFF; /* Цвет текста при наведении */
- }
- </style>
+}
+</style>
 </head>
 <body>
 
- <div class="sidebar">
- <div class="logo">
- <img src="logo.png" alt="Логотип сайта" width="100"> <!-- Замените на путь к вашему логотипу -->
- </div>
- <ul class="nav-links">
- <li><a href="#home">Main</a></li>
- <li><a href="#about">fsfsf</a></li>
- <li><a href="#services">asasas</a></li>
- <li><a href="#contact">asasa</a></li>
- </ul>
- </div>
+<div class="sidenav">
+ <a href="index.html"><i class="fas fa-user"></i>Home</a>
+ <a href="#services"><i class="fas fa-cogs"></i>Artifacts</a>
+ <a href="#clients"><i class="fas fa-users"></i>Equipment</a>
+ <a href="#contact"><i class="fas fa-envelope"></i>Leaks</a>
+ <a href="#contact"><i class="fas fa-envelope"></i>Leaks</a>
+ <a href="#contact"><i class="fas fa-envelope"></i>Leaks</a>
+ <a href="#contact"><i class="fas fa-envelope"></i>Leaks</a>
+</div>
 
- <div class="main-content">
- <h1>WElo</h1>
- <p>asasasas</p>
- </div>
+<div class="main">
+ <p id="demo"></p>
+</div>
+
+<script>
+var countDownDate = new Date("Jan22, 2025 07:00:00").getTime();
+var x = setInterval(function() {
+ var now = new Date().getTime();
+ var distance = countDownDate - now;
+ var days = Math.floor(distance / (1000 *60 *60 *24));
+ var hours = Math.floor((distance % (1000 *60 *60 *24)) / (1000 *60 *60));
+ var minutes = Math.floor((distance % (1000 *60 *60)) / (1000 *60));
+ var seconds = Math.floor((distance % (1000 *60)) /1000);
+ document.getElementById("demo").innerHTML = days + "d " + hours + "h " + minutes + "m " + seconds + "s ";
+ if (distance <0) {
+ clearInterval(x);
+ document.getElementById("demo").innerHTML = "EXPIRED";
+ }
+},1000);
+</script>
 
 </body>
 </html>
