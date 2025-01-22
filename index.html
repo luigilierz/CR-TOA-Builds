@@ -196,121 +196,29 @@
 </head>
 <body>
 
-<div>
-    <button class="toggle-button" onclick="toggleSidebar()">☰</button>
-    <div class="sidenav" id="sidebar">
-        <img src="emoji_cookie1002_002.png" class="center-image" alt="Centered Cookie Image">
-        <a href="index.html">
-            <img src="Common_Icon_Home.png">Home
-        </a>
-        <a href="cookies.html">
-            <img src="Common_Icon_Cookie.png">Cookies
-        </a>
-        <a href="artifacts.html">
-            <img src="Common_Icon_Artifact.png">Artifacts
-        </a>
-        <a href="equipments.html">
-            <img src="Common_Icon_Weapon.png">Equipments
-        </a>
-        <a href="skins.html">
-            <img src="Common_Icon_Skin.png">Skins
-        </a>
-    </div>
-</div>
-
-<div class="main">
-    <div class="left-panel">
-        <h2 class="latest-news">Latest News</h2>
-        <div class="square">
-            <a href="https://t.me/CookieRunTowerOfAdventures/605" target="_blank">
-                <img src="photo_2025-01-22_10-20-48.jpg" alt="New Update Image">
-                <div class="overlay"></div>
-                <div class="text">New Cookie in February: HoneyBear</div>
+    <div>
+        <button class="toggle-button" onclick="toggleSidebar()">☰</button>
+        <div class="sidenav" id="sidebar">
+            <img src="emoji_cookie1002_002.png" class="center-image" alt="Centered Cookie Image">
+            <a href="index.html">
+                <img src="Common_Icon_Home.png">Home
             </a>
-        </div>
-        <div class="square">
-            <a href="https://t.me/CookieRunTowerOfAdventures/598" target="_blank">
-                <img src="photo_2025-01-22_10-50-07.jpg" alt="New Update Image">
-                <div class="overlay"></div>
-                <div class="text">New Cookie in February: FrostRock</div>
+            <a href="cookies.html">
+                <img src="Common_Icon_Cookie.png">Cookies
             </a>
-        </div>
-        <div class="square">
-            <a href="https://t.me/CookieRunTowerOfAdventures/602" target="_blank">
-                <img src="photo_2025-01-22_12-03-28.jpg" alt="New Update Image">
-                <div class="overlay"></div>
-                <div class="text">New Gacha Banners: Statues</div>
+            <a href="artifacts.html">
+                <img src="Common_Icon_Artifact.png">Artifacts
+            </a>
+            <a href="equipments.html">
+                <img src="Common_Icon_Weapon.png">Equipments
+            </a>
+            <a href="skins.html">
+                <img src="Common_Icon_Skin.png">Skins
             </a>
         </div>
     </div>
-    <div class="right-panel">
-        <h2 class="latest-news">Timer Until Reset</h2>
-        <div class="square">
-            <div id="demo" class="text"></div>
-        </div>
-        <div class="square">
-            <div id="daily-demo" class="text"></div>
-        </div>
-    </div>
-</div>
+    
 
-<script>
-    function getNextWednesday() {
-        var now = new Date();
-        var daysUntilWednesday = (3 - now.getUTCDay() + 7) % 7;
-        if (daysUntilWednesday === 0 && now.getUTCHours() >= 3) {
-            daysUntilWednesday = 7;
-        }
-        var nextWednesday = new Date(now.getUTCFullYear(), now.getUTCMonth(), now.getUTCDate() + daysUntilWednesday, 3, 0, 0);
-        return nextWednesday.getTime();
-    }
-
-    function getNextDailyTime() {
-        var now = new Date();
-        var nextDailyTime = new Date(now.getUTCFullYear(), now.getUTCMonth(), now.getUTCDate(), 16, 0, 0); // 19:00 по московскому времени
-        if (now.getTime() > nextDailyTime.getTime()) {
-            nextDailyTime.setUTCDate(nextDailyTime.getUTCDate() + 1); // Завтра
-        }
-        return nextDailyTime.getTime();
-    }
-
-    var countDownDate = getNextWednesday();
-    var dailyCountDownDate = getNextDailyTime();
-
-    var x = setInterval(function() {
-        var now = new Date().getTime();
-
-        // Таймер для среды
-        var distance = countDownDate - now;
-        var days = Math.floor(distance / (1000 * 60 * 60 * 24));
-        var hours = Math.floor((distance % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
-        var minutes = Math.floor((distance % (1000 * 60 * 60)) / (1000 * 60));
-        var seconds = Math.floor((distance % (1000 * 60)) / 1000);
-        document.getElementById("demo").innerHTML = days + "d " + hours + "h " + minutes + "m " + seconds + "s ";
-
-        if (distance < 0) {
-            clearInterval(x);
-            countDownDate = getNextWednesday();
-        }
-
-        // Таймер для ежедневного сброса
-        var dailyDistance = dailyCountDownDate - now;
-        var dailyDays = Math.floor(dailyDistance / (1000 * 60 * 60 * 24));
-        var dailyHours = Math.floor((dailyDistance % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
-        var dailyMinutes = Math.floor((dailyDistance % (1000 * 60 * 60)) / (1000 * 60));
-        var dailySeconds = Math.floor((dailyDistance % (1000 * 60)) / 1000);
-        document.getElementById("daily-demo").innerHTML = dailyDays + "d " + dailyHours + "h " + dailyMinutes + "m " + dailySeconds + "s ";
-
-        if (dailyDistance < 0) {
-            dailyCountDownDate = getNextDailyTime();
-        }
-    }, 1000);
-
-    function toggleSidebar() {
-        var sidebar = document.getElementById("sidebar");
-        sidebar.classList.toggle("hidden");
-    }
-</script>
 
 </body>
 </html>
