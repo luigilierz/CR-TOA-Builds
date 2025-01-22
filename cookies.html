@@ -73,84 +73,92 @@
     }
 
     .main {
-        margin-left: 250px;
-        display: flex;
-        height: 100vh;
-    }
-
-    .left-panel, .right-panel {
-        flex: 1;
-        padding: 10px;
-        color: white;
+        margin-left: 255px;
         display: flex;
         flex-direction: column;
-        align-items: stretch;
-        justify-content: flex-start;
+        height: 100vh;
+        padding: 20px;
+        transition: margin-left 0.3s ease;
     }
 
-    .latest-news {
-        font-size: 45px;
-        font-weight: bold;
-        margin-bottom: 10px;
+    .search-container {
+        margin-bottom: 20px;
+    }
+
+    .search-container input {
+        padding: 10px;
+        font-size: 18px;
+        font-family: 'CookieRunRegular', sans-serif; /* Установлен шрифт для поля поиска */
+        width: calc(100% - 22px);
+        border: 2px solid #3a3a3a;
+        border-radius: 5px;
+        background-color: #151233;
         color: white;
-        margin-left: 25px;
-        text-align: left;
-        width: 100%;
-        font-family: 'CookieRunBlack', sans-serif;
+    }
+    
+    .filter-icons {
+        display: flex;
+        justify-content: flex-start;
+        margin: 10px 0;
     }
 
-    .square {
-        width: 80%; 
-        height: 200px;
-        background-color: #3a3a3a; 
-        border-radius: 15px; 
-        margin: 20px auto; /* Центрируем квадрат */
+    .filter-icon {
+        cursor: pointer;
+        font-size: 24px;
+        color: white;
+        padding: 8px;
+        border-radius: 10px;
+        background-color: rgba(255, 255, 255, 0);
+        border: 2px solid rgba(255, 255, 255, 0.2);
+        transition: background 0.3s, border 0.3s; 
         display: flex;
         justify-content: center;
         align-items: center;
-        font-size: 20px;
-        color: white;
-        position: relative; 
-        overflow: hidden; 
+        width: 40px;
+        height: 40px;
+        margin-right: 10px;
     }
 
-    .square img {
-        width: 100%; 
-        height: 100%; 
-        object-fit: cover; 
-        filter: blur(5px); 
-        position: absolute; 
-        top: 0; 
-        left: 0; 
-        z-index: 1; 
+    .filter-icon:hover {
+        background-color: rgba(99, 102, 241, 0.2);
     }
 
-    .overlay {
-        position: absolute; 
-        top: 0; 
-        left: 0; 
-        width: 100%; 
-        height: 100%; 
-        background-color: rgba(0, 0, 0, 0.5); 
-        z-index: 2; 
+    .filter-icon.active {
+        border-color: #6366f1;
     }
 
-    .square:hover .overlay {
-        background-color: rgba(0, 0, 0, 0.3); 
+    .characters {
+        display: flex;
+        flex-wrap: wrap;
+        justify-content: flex-start;
     }
 
-    .square .text {
-        position: absolute; 
-        bottom: 10px; 
-        left: 10px; 
-        color: white; 
-        font-size: 24px; 
-        z-index: 3; 
-        user-select: none; 
+    .character {
+        width: 100px;
+        height: 140px;
+        background-color: transparent; /* Делаем фон прозрачным */
+        border-radius: 10px;
+        margin: 10px; 
+        padding: 10px;
+        position: relative;
+        text-align: center;
+        box-sizing: border-box;
     }
 
-    #demo, #daily-demo {
-        font-size: 48px;
+    .character-info {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+    }
+
+    .character-info span {
+        color: white; /* Устанавливаем цвет текста белым */
+    }
+
+    .character-image {
+        width: auto;
+        height: 100px;
+        margin-bottom: 7px;
     }
 
     .toggle-button {
@@ -175,50 +183,317 @@
 
         .main {
             margin-left: 0;
-            padding-top: 45px; 
+            padding-top: 45px;
         }
 
         .toggle-button {
-            display: block; 
+            display: block;
         }
     }
 
-    @media screen and (max-height: 450px) {
-        .sidenav {
-            padding-top: 15px;
-        }
-
-        .sidenav a {
-            font-size: 18px;
-        }
-    }
- </style>
+</style>
 </head>
 <body>
 
-    <div>
-        <button class="toggle-button" onclick="toggleSidebar()">☰</button>
-        <div class="sidenav" id="sidebar">
-            <img src="emoji_cookie1002_002.png" class="center-image" alt="Centered Cookie Image">
-            <a href="index.html">
-                <img src="Common_Icon_Home.png">Home
-            </a>
-            <a href="cookies.html">
-                <img src="Common_Icon_Cookie.png">Cookies
-            </a>
-            <a href="artifacts.html">
-                <img src="Common_Icon_Artifact.png">Artifacts
-            </a>
-            <a href="equipments.html">
-                <img src="Common_Icon_Weapon.png">Equipments
-            </a>
-            <a href="skins.html">
-                <img src="Common_Icon_Skin.png">Skins
-            </a>
+<div>
+    <button class="toggle-button" onclick="toggleSidebar()">☰</button>
+    <div class="sidenav" id="sidebar">
+        <img src="emoji_cookie1002_002.png" class="center-image" alt="Centered Cookie Image">
+        <a href="index.html"><img src="Common_Icon_Home.png">Home</a>
+        <a href="cookies.html"><img src="Common_Icon_Cookie.png">Cookies</a>
+        <a href="artifacts.html"><img src="Common_Icon_Artifact.png">Artifacts</a>
+        <a href="equipments.html"><img src="Common_Icon_Weapon.png">Equipments</a>
+        <a href="skins.html"><img src="Common_Icon_Skin.png">Skins</a>
+    </div>
+</div>
+
+<div class="main" id="content">
+    <div class="search-container">
+        <input type="text" id="search" placeholder="Search..." onkeyup="filterCharacters()">
+    </div>
+
+    <div class="filter-icons">
+        <div class="filter-icon" id="fire" onclick="toggleFilter('fire', this)">
+            <img src="fire_icon.png" alt="Fire" style="width: 30px; height: 30px;">
+        </div>
+        <div class="filter-icon" id="water" onclick="toggleFilter('water', this)">
+            <img src="water_icon.png" alt="Water" style="width: 30px; height: 30px;">
+        </div>
+        <div class="filter-icon" id="earth" onclick="toggleFilter('earth', this)">
+            <img src="earth_icon.png" alt="Earth" style="width: 30px; height: 30px;">
+        </div>
+        <div class="filter-icon" id="air" onclick="toggleFilter('air', this)">
+            <img src="air_icon.png" alt="Air" style="width: 30px; height: 30px;">
+        </div>
+        <div class="filter-icon" id="dark" onclick="toggleFilter('dark', this)">
+            <img src="dark_icon.png" alt="Dark" style="width: 30px; height: 30px;">
+        </div>
+        <div class="filter-icon" id="clear" onclick="toggleFilter('clear', this)">
+            <img src="clear_icon.png" alt="Clear" style="width: 30px; height: 30px;">
+        </div>
+        <div class="filter-icon" id="common" onclick="toggleFilter('common', this)">
+            <img src="common_icon.png" alt="Common" style="width: 30px; height: 30px;">
+        </div>
+        <div class="filter-icon" id="rare" onclick="toggleFilter('rare', this)">
+            <img src="rare_icon.png" alt="Rare" style="width: 30px; height: 30px;">
+        </div>
+        <div class="filter-icon" id="epic" onclick="toggleFilter('epic', this)">
+            <img src="epic_icon.png" alt="Epic" style="width: 30px; height: 30px;">
         </div>
     </div>
-    
 
+    <div class="characters" id="characters">
+        <div class="character" data-element="fire" data-rarity="epic">
+            <div class="character-info">
+                <img src="jalapeno.png" alt="Jalapeno" class="character-image">
+                <span>Jalapeno</span>
+            </div>
+        </div>
+        <div class="character" data-element="water" data-rarity="epic">
+            <div class="character-info">
+                <img src="ice_mint.png" alt="Ice Mint" class="character-image">
+                <span>Ice Mint</span>
+            </div>
+        </div>
+        <div class="character" data-element="earth" data-rarity="common">
+            <div class="character-info">
+                <img src="frostrock.png" alt="FrostRock" class="character-image">
+                <span>FrostRock</span>
+            </div>
+        </div>
+        <div class="character" data-element="air" data-rarity="epic">
+            <div class="character-info">
+                <img src="basil_pesto.png" alt="Basil Pesto" class="character-image">
+                <span>Basil Pesto</span>
+            </div>
+        </div>
+        <div class="character" data-element="fire" data-rarity="common">
+            <div class="character-info">
+                <img src="cherry.png" alt="Cherry" class="character-image">
+                <span>Cherry</span>
+            </div>
+        </div>
+        <div class="character" data-element="water" data-rarity="epic">
+            <div class="character-info">
+                <img src="cream_soda.png" alt="Cream Soda" class="character-image">
+                <span>Cream Soda</span>
+            </div>
+        </div>
+        <div class="character" data-element="dark" data-rarity="epic">
+            <div class="character-info">
+                <img src="kohlrabi.png" alt="Kohlrabi Cookie" class="character-image">
+                <span>Kohlrabi</span>
+            </div>
+        </div>
+        <div class="character" data-element="fire" data-rarity="epic">
+            <div class="character-info">
+                <img src="Peach.png" alt="Peach Cookie" class="character-image">
+                <span>Peach</span>
+            </div>
+        </div>
+        <div class="character" data-element="clear" data-rarity="epic">
+            <div class="character-info">
+                <img src="Sugar Globe.png" alt="Sugar Globe Cookie" class="character-image">
+                <span>Sugar Globe</span>
+            </div>
+        </div>
+        <div class="character" data-element="clear" data-rarity="common">
+            <div class="character-info">
+                <img src="Angel.png" alt="Angel Cookie" class="character-image">
+                <span>Angel</span>
+            </div>
+        </div>
+        <div class="character" data-element="dark" data-rarity="epic">
+            <div class="character-info">
+                <img src="Dark Choco.png" alt="Dark Choco Cookie" class="character-image">
+                <span>Dark Choco</span>
+            </div>
+        </div>
+        <div class="character" data-element="earth" data-rarity="epic">
+            <div class="character-info">
+                <img src="Candy Drop.png" alt="Candy Drop Cookie" class="character-image">
+                <span>Candy Drop</span>
+            </div>
+        </div>
+        <div class="character" data-element="earth" data-rarity="rare">
+            <div class="character-info">
+                <img src="Twisted Donut.png" alt="Twisted Donut Cookie" class="character-image">
+                <span>Twisted Donut</span>
+            </div>
+        </div>
+        <div class="character" data-element="dark" data-rarity="rare">
+            <div class="character-info">
+                <img src="Werewolf.png" alt="Werewolf Cookie" class="character-image">
+                <span>Werewolf</span>
+            </div>
+        </div>
+        <div class="character" data-element="clear" data-rarity="epic">
+            <div class="character-info">
+                <img src="Lemon Zest.png" alt="Lemon Zest Cookie" class="character-image">
+                <span>Lemon Zest</span>
+            </div>
+        </div>
+        <div class="character" data-element="water" data-rarity="epic">
+            <div class="character-info">
+                <img src="Rockstar.png" alt="Rockstar Cookie" class="character-image">
+                <span>Rockstar</span>
+            </div>
+        </div>
+        <div class="character" data-element="air" data-rarity="common">
+            <div class="character-info">
+                <img src="Ninja.png" alt="Ninja Cookie" class="character-image">
+                <span>Ninja</span>
+            </div>
+        </div>
+        <div class="character" data-element="clear" data-rarity="rare">
+            <div class="character-info">
+                <img src="Pistachio.png" alt="Pistachio Cookie" class="character-image">
+                <span>Pistachio</span>
+            </div>
+        </div>
+        <div class="character" data-element="clear" data-rarity="epic">
+            <div class="character-info">
+                <img src="Wizard.png" alt="Wizard Cookie" class="character-image">
+                <span>Wizard</span>
+            </div>
+        </div>
+        <div class="character" data-element="water" data-rarity="rare">
+            <div class="character-info">
+                <img src="Gumball.png" alt="Gumball Cookie" class="character-image">
+                <span>Gumball</span>
+            </div>
+        </div>
+        <div class="character" data-element="dark" data-rarity="rare">
+            <div class="character-info">
+                <img src="Alchemist.png" alt="Alchemist Cookie" class="character-image">
+                <span>Alchemist</span>
+            </div>
+        </div>
+        <div class="character" data-element="fire" data-rarity="rare">
+            <div class="character-info">
+                <img src="Mala Sauce.png" alt="Mala Sauce Cookie" class="character-image">
+                <span>Mala Sauce</span>
+            </div>
+        </div>
+        <div class="character" data-element="earth" data-rarity="epic">
+            <div class="character-info">
+                <img src="Sting Durian.png" alt="Sting Durian Cookie" class="character-image">
+                <span>Sting Durian</span>
+            </div>
+        </div>
+        <div class="character" data-element="air" data-rarity="epic">
+            <div class="character-info">
+                <img src="Rye.png" alt="Rye Cookie" class="character-image">
+                <span>Rye</span>
+            </div>
+        </div>
+        <div class="character" data-element="air" data-rarity="epic">
+            <div class="character-info">
+                <img src="Plantain.png" alt="Plantain Cookie" class="character-image">
+                <span>Plantain</span>
+            </div>
+        </div>
+        <div class="character" data-element="clear" data-rarity="epic">
+            <div class="character-info">
+                <img src="Lemon.png" alt="Lemon Cookie" class="character-image">
+                <span>Lemon</span>
+            </div>
+        </div>
+        <div class="character" data-element="fire" data-rarity="epic">
+            <div class="character-info">
+                <img src="Crushed Pepper.png" alt="Crushed Pepper Cookie" class="character-image">
+                <span>Crushed Pepper</span>
+            </div>
+        </div>
+        <div class="character" data-element="air" data-rarity="epic">
+            <div class="character-info">
+                <img src="Chamomile.png" alt="Chamomile Cookie" class="character-image">
+                <span>Chamomile</span>
+            </div>
+        </div>
+        <div class="character" data-element="earth" data-rarity="common">
+            <div class="character-info">
+                <img src="Muscle.png" alt="Muscle Cookie" class="character-image">
+                <span>Muscle</span>
+            </div>
+        </div>
+        <div class="character" data-element="dark" data-rarity="epic">
+            <div class="character-info">
+                <img src="Blackberry.png" alt="Blackberry Cookie" class="character-image">
+                <span>Blackberry</span>
+            </div>
+        </div>
+        <div class="character" data-element="fire" data-rarity="epic">
+            <div class="character-info">
+                <img src="Chili Pepper.png" alt="Chili Pepper Cookie" class="character-image">
+                <span>Chili Pepper</span>
+            </div>
+        </div>
+    </div>
 
+    <script>
+        let activeFilters = []; // Массив для хранения активных фильтров
+
+        // Функция фильтрации персонажей по имени
+        function filterCharacters() {
+            const searchValue = document.getElementById('search').value.toLowerCase();
+            const characters = document.querySelectorAll('.characters .character');
+        
+            characters.forEach(character => {
+                const characterName = character.textContent.toLowerCase();
+                const elementMatch = activeFilters.length === 0 || activeFilters.includes(character.dataset.element);
+                const rarityMatch = activeFilters.length === 0 || activeFilters.includes(character.dataset.rarity);
+                const nameMatch = characterName.includes(searchValue);
+                
+                const hasElementFilter = activeFilters.some(filter => ['fire', 'water', 'earth', 'air', 'dark', 'clear'].includes(filter));
+                const hasRarityFilter = activeFilters.some(filter => ['common', 'rare', 'epic'].includes(filter));
+        
+                // Проверяем если есть фильтр элементов, то он должен совпадать с элементом персонажа
+                const elementFilterMatch = hasElementFilter ? activeFilters.includes(character.dataset.element) : true;
+        
+                // Проверяем если есть фильтр редкости, то он должен совпадать с редкостью персонажа
+                const rarityFilterMatch = hasRarityFilter ? activeFilters.includes(character.dataset.rarity) : true;
+        
+                if (elementFilterMatch && rarityFilterMatch && nameMatch) {
+                    character.style.display = '';
+                } else {
+                    character.style.display = 'none';
+                }
+            });
+        }
+        // Функция для включения/выключения фильтра
+        function toggleFilter(filterValue, filterIcon) {
+            const index = activeFilters.indexOf(filterValue);
+            if (index === -1) {
+                activeFilters.push(filterValue);
+                filterIcon.classList.add('active');
+            } else {
+                activeFilters.splice(index, 1);
+                filterIcon.classList.remove('active');
+            }
+            filterCharacters();
+        }
+
+        function clearFilter() {
+            const filterIcons = document.querySelectorAll('.filter-icon');
+            activeFilters = [];
+            filterIcons.forEach(icon => icon.classList.remove('active'));
+            filterCharacters();
+            document.getElementById('search').value = '';
+        }
+
+        function toggleSidebar() {
+            var sidebar = document.getElementById("sidebar");
+            var mainContent = document.getElementById("content");
+            sidebar.classList.toggle("hidden");
+            if (sidebar.classList.contains("hidden")) {
+                mainContent.style.marginLeft = "0";
+            } else {
+                mainContent.style.marginLeft = "255px";
+            }
+        }
+    </script>
+
+</div>
 </body>
 </html>
